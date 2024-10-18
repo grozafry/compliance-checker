@@ -63,6 +63,27 @@ def check_compliance(webpage_text, compliance_policy_text):
 
 @app.route('/check_compliance', methods=['POST'])
 def api_check_compliance():
+    """
+    POST Request
+    {
+        "url": "https://mercury.com/"
+    }
+
+    Response 
+    {
+    "violations": [
+            {
+                "rule": "Terms to Avoid - Avoid using 'banking' when not a licensed bank",
+                "violation": "Powerful banking. Simplified finances."
+            },
+            {
+                "rule": "Terms to Avoid - Avoid using 'bank account' when not a licensed bank",
+                "violation": "Your bank account should do more than hold your money."
+            }
+        ]
+    }
+        
+    """
     url = request.json.get('url')
     if not url:
         return jsonify({"error": "No URL provided"}), 400
